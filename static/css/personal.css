@@ -1,0 +1,398 @@
+:root {
+    --grey: #efefef;
+    font-family: 'Montserrat', 'Museo Moderno', Arial, sans-serif;
+}
+@font-face {
+    font-family: 'SFUFuturaLight';
+    src: url('assets/fonts/SFUFuturaLight.ttf') format('truetype');
+    font-weight: lighter;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Montserrat', 'Museo Moderno';
+    src: url('assets/fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MontserratAlternate';
+    src: url('assets/fonts/MontserratAlternate-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/fonts/Montserrat-Light.ttf') format('truetype');
+    font-weight: lighter;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Museo Moderno';
+    src: url('assets/fonts/MuseoModerno-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Museo Moderno';
+    src: url('assets/fonts/MuseoModerno-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Museo Moderno';
+    src: url('assets/fonts/MuseoModerno-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Museo Moderno';
+    src: url('assets/fonts/MuseoModerno-Light.ttf') format('truetype');
+    font-weight: lighter;
+    font-style: normal;
+}
+
+
+h3 {
+    font-family: 'Museo Moderno', Arial, sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: #333;
+}
+
+.bg-grey {
+    background-color: var(--grey);
+}
+
+.nav span a i {
+    color: #636363;
+}
+
+.nav span a i:hover {
+    color: inherit;
+}
+
+.img-text-container {
+    position: relative;
+}
+
+.inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    padding: 30px;
+}
+
+.borderless {
+    border: none;
+    border-radius: 0rem;
+}
+
+#main-slider {
+    max-width: 100%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: auto;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    color: #fff;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+}
+
+.instagram .card:hover {
+    animation: shake infinite alternate-reverse;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    background-color: pink;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-1px);
+    }
+
+    50% {
+        transform: translateX(2px);
+    }
+
+    75% {
+        transform: translateX(-1px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.hover-switch img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.1s;
+}
+
+.hover-switch img:last-of-type {
+    opacity: 1;
+}
+
+.hover-switch:hover img:last-of-type {
+    opacity: 0;
+}
+
+#messenger {
+    background: none;
+    border-radius: 50%;
+    bottom: 18pt;
+    display: inline;
+    height: 45pt;
+    padding: 0px;
+    position: fixed;
+    right: 18pt;
+    top: auto;
+    width: 45pt;
+    z-index: 2147483646;
+    box-shadow: 0 5px 24px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: scale(1.05) translateX(5px) translateY(-5px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.25s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover::after {
+    transform: none;
+    box-shadow: none;
+    transition: transform 0.25s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+@keyframes slideUpDown {
+    0% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+.card .btn:hover {
+    animation: shining 1s infinite;
+    height: 100%;
+}
+
+@keyframes shining {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.button {
+    display: block;
+    position: relative;
+    margin: 50px auto 0;
+    padding: 10px 0;
+    width: 110px;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #0099cc;
+    border: none;
+  }
+  .button.one:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(255,255,255,0.4);
+      -webkit-transition: none;
+         -moz-transition: none;
+              transition: none;
+  }
+  .button.one:hover:after {
+    width: 120%;
+    background-color: rgba(255,255,255,0);
+    
+      -webkit-transition: all 0.4s ease-in-out;
+         -moz-transition: all 0.4s ease-in-out;
+              transition: all 0.4s ease-in-out;
+  }
+  
+  .cate {
+    background-repeat: no-repeat;
+    background-position: -120px -120px, 0 0;
+    
+    background-image: -webkit-linear-gradient(
+      top left,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.2) 37%,
+      rgba(255, 255, 255, 0.8) 45%,
+      rgba(255, 255, 255, 0.0) 50%
+    );
+    background-image: -moz-linear-gradient(
+      0 0,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.2) 37%,
+      rgba(255, 255, 255, 0.8) 45%,
+      rgba(255, 255, 255, 0.0) 50%
+    );    
+    background-image: -o-linear-gradient(
+      0 0,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.2) 37%,
+      rgba(255, 255, 255, 0.8) 45%,
+      rgba(255, 255, 255, 0.0) 50%
+    );
+    background-image: linear-gradient(
+      0 0,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.2) 37%,
+      rgba(255, 255, 255, 0.8) 45%,
+      rgba(255, 255, 255, 0.0) 50%
+    );
+    
+    -moz-background-size: 250% 250%, 100% 100%;
+         background-size: 250% 250%, 100% 100%;
+    
+    -webkit-transition: background-position 0s ease;
+       -moz-transition: background-position 0s ease;       
+         -o-transition: background-position 0s ease;
+            transition: background-position 0s ease;
+  }
+  
+  .cate:hover {
+    background-position: 0 0, 0 0;
+    
+    -webkit-transition-duration: 0.5s;
+       -moz-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+  }
+.fw-lighter {
+    font-family: 'SFUFuturaLight', 'Montserrat', 'Museo Moderno', Arial, sans-serif;
+    font-weight: lighter;
+}
+ 
+.bg-cream {
+    background-color: #eeeeee;
+}
+
+@media screen and (max-width: 768px) {
+    iframe {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    iframe {
+        width: 100%;
+        height: 420px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    iframe {
+        width: 100%;
+        height: 640px;
+    }
+}
+
+#messenger {
+    animation: messenger 1s infinite;
+}
+
+@keyframes messenger {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+}
+
+.color-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.beige {
+    background-color: #e4d3be !important;
+}
+
+.black {
+    background-color: black;
+}
+
+.brown {
+    background-color: #9b5513;
+}
+
+.caramel {
+    background-color: #c99541 !important;
+}
+
+.navy {
+    background-color: #13014d !important;
+}
+
+.pastel-pink {
+    background-color: #f5b79f !important;
+}
+
+.midnight-green {
+    background-color: #005e1f !important;
+}
+
+.grey {
+    background-color: #c7c7c7 !important;
+}
