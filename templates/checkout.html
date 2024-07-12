@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Camelia Checkout</title>
+    <!-- Bootstrap icons-->
+    <link href="static/css/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="static/css/styles.css" rel="stylesheet" />
+    <!-- Personal Styling CSS-->
+    <link href="static/css/personal.css" rel="stylesheet" />
+  </head>
+  <body>
+    <section class="container">
+      <div class="bg-cream p-5 my-4">
+        <h4 class="mb-3">Giỏ hàng</h4>
+        <div class="" id="productList"></div>
+      </div>
+      <div class="bg-cream p-5 my-4">
+        <h4 class="mb-3">Thông tin giao hàng</h4>
+        <form
+          class="needs-validation"
+          novalidate
+          id="checkoutForm"
+        >
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="name" class="form-label">Họ và tên</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                value=""
+                required
+              />
+              <div class="invalid-feedback">Cần nhập tên hợp lệ.</div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                required
+              />
+              <div class="invalid-feedback">
+                Nhập địa chỉ email để được cập nhật thông tin giao hàng.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">Địa chỉ</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                required
+              />
+              <div class="invalid-feedback">Nhập địa chỉ giao hàng.</div>
+            </div>
+
+            <div class="col-md-5">
+              <label for="country" class="form-label">Quốc gia</label>
+              <select
+                class="form-select"
+                id="country"
+                required
+              >
+                <option>Việt Nam</option>
+                <option>Hoa kỳ</option>
+                <option>Anh</option>
+                <option>Pháp</option>
+                <option>Đức</option>
+                <option>Trung Quốc</option>
+                <option>Thái Lan</option>
+                <option>Malaysia</option>
+                <option>Indonesia</option>
+                <option>Philippines</option>
+                <option>Ấn Độ</option>
+                <option>Thổ Nhĩ Kỳ</option>
+              </select>
+              <div class="invalid-feedback">Chọn quốc gia hợp lệ.</div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="city" class="form-label">Thành phố</label>
+              <select class="form-select" id="city" required="country">
+                <option>Hà Nội</option>
+                <option>TP.Hồ Chí Minh</option>
+                <option>Đà Nẵng</option>
+                <option>Hải Phòng</option>
+                <option>Cần Thơ</option>
+                <option>Đồng Nai</option>
+              </select>
+              <div class="invalid-feedback">Thành phố cần được chọn.</div>
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="save-info" />
+              <label class="form-check-label" for="save-info"
+                >Lưu cho lần thanh toán sau</label
+              >
+            </div>
+
+            <hr class="my-4" />
+
+            <h4 class="mb-3">Phương thức thanh toán</h4>
+
+            <div class="my-3">
+              <div class="form-check">
+                <input
+                  id="credit"
+                  type="radio"
+                  class="form-check-input"
+                  name="paymentMethod"
+                  value="credit"
+                  checked=""
+                  required
+                />
+                <label class="form-check-label" for="credit">Credit card</label>
+              </div>
+              <div class="form-check">
+                <input
+                  id="debit"
+                  type="radio"
+                  class="form-check-input"
+                  name="paymentMethod"
+                  value="debit"
+                  required
+                />
+                <label class="form-check-label" for="debit">Debit card</label>
+              </div>
+              <div class="form-check">
+                <input
+                  id="paypal"
+                  type="radio"
+                  class="form-check-input"
+                  name="paymentMethod"
+                  value="paypal"
+                  required
+                />
+                <label class="form-check-label" for="paypal">PayPal</label>
+              </div>
+            </div>
+
+            <div class="row gy-3">
+              <div class="col-md-6">
+                <label for="cc-name" class="form-label">Tên trên thẻ</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cc-name"
+                    required
+                />
+              </div>
+
+              <div class="col-md-6">
+                <label for="cc-number" class="form-label">Số thẻ</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cc-number"
+                    required
+                />
+              </div>
+
+              <div class="col-md-3">
+                <label for="cc-expiration" class="form-label"
+                  >Ngày hết hạn</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cc-expiration"
+                    required
+                />
+              </div>
+
+              <div class="col-md-3">
+                <label for="cc-cvv" class="form-label">CVV</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cc-cvv"
+                    required
+                />
+              </div>
+            </div>
+
+            <hr class="my-4" />
+
+            <button
+              class="w-100 btn btn-primary btn-lg btn-light"
+              type="submit"
+            >
+              Thanh toán
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/script.js"></script>
+    <script src="static/js/cart.js"></script>
+    <script src="static/js/form_validation.js"></script>
+  </body>
+</html>

@@ -55,9 +55,6 @@ const navbarTemplate = `
   <i class="fa-solid fa-cart-shopping"></i>
   <span id="cartNumber" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
 </button>
-<span class="mx-4 mx-lg-5 d-flex align-items-start">
-  <a href="account.html" class="nav-link"><i class="fa-solid fa-user"></i></a>
-</span>
 </nav>
 <div class="collapse bg-cream" id="shoppingCart"  style="position: -webkit-sticky; position: sticky ;top: 60px; z-index: 10;">
 <div class="p-5">

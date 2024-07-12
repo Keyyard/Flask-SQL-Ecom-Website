@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Camelia's Blog</title>
+    <!-- Bootstrap icons-->
+    <link href="static/css/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="static/css/styles.css" rel="stylesheet" />
+    <!-- Personal Styling CSS-->
+    <link href="static/css/personal.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Section -->
+    <section class="bg-light py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            {% for blog in blogs %}
+              {% if blog %}
+                <div class="card mb-4">
+                  <img src="{{blog.image}}" class="card-img-top" alt="Blog Image" />
+                  <div class="card-body">
+                    <h2 class="card-title">{{ blog.title }}</h2>
+                    <p class="card-text">{{ blog.content }}</p>
+                    <a class="btn btn-primary" href="/blogs/{{ blog.id }}">Xem thêm</a>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="static/js/jquery.js"></script>
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/script.js"></script>
+    <script src="static/js/cart.js"></script>
+  </body>
+</html>
