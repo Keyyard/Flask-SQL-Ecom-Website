@@ -33,8 +33,15 @@ def blog():
     blogs = get_blogs()
     return render_template('blog.html', blogs=blogs)
 
-@app.route('/blog/<int:blog_id>')
-
+@app.route('/blogs/<int:blog_id>')
+def blog_detail(blog_id):
+    blog = get_blog_detail(blog_id)
+    if not blog:
+        return "Blog không khả dụng - Blog is not available", 404
+    if len(blog) > 0:
+        return render_template('blog_detail.html', blog=blog)
+    else:
+        return "Blog không khả dụng - Blog is not available", 404
 
 @app.route('/checkout.html')
 def checkout():
