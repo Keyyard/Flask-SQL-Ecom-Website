@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <h2 class="text-center my-4">Login</h2>
+            <form action="/login" method="POST">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-dark btn-lg mx-auto d-block my-4" style="width: 12rem;">Login</button>
+            </form>
+            <div>
+                <div class="text-left">Don't have an account? <a href="/registerForm" style="font-weight: 600; ">Register here</a>
+            </div>
+            {% if error %}
+            <div class="py-2 text-danger" style="font-weight: 500;">
+                {% if error == 'email' %}
+                Email does not exist, try another email or register a new account.
+                {% elif error == 'password' %}
+                Incorrect password, try again.
+                {% endif %}
+            </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

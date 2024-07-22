@@ -20,7 +20,20 @@
     <section class="container">
       <div class="bg-cream p-5 my-4">
         <h4 class="mb-3">Giỏ hàng</h4>
-        <div class="" id="productList"></div>
+        <div class="" id="productList">
+          <!-- Dynamically insert cart items here -->
+          {% for item in cart_items %}
+          <div class="cart-item mb-3">
+            <span class="item-name">{{ item.name }}</span> -
+            <span class="item-quantity">Quantity: {{ item.quantity }}</span> -
+            <span class="item-price">Price: ${{ item.price }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        <!-- Display total price -->
+        <div class="total-price mt-3">
+          Total Price: ${{ total_price }}
+        </div>
       </div>
       <div class="bg-cream p-5 my-4">
         <h4 class="mb-3">Thông tin giao hàng</h4>

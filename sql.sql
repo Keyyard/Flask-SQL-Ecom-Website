@@ -27,3 +27,8 @@ INSERT INTO products (category, name, price, image, rating, description) VALUES
 ('totes', 'Mini Tote', '395,000₫', '../static/assets/products/tote_accessories/tote_accessories5.jpg', 4.5, 'mini tote description'),
 ('totes', 'Premium Canvas Tote', '400,000₫', '../static/assets/products/tote_accessories/tote_accessories7.jpg', 5, 'premium canvas tote description');
 
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL
+);

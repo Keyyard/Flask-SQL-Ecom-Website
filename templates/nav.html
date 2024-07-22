@@ -1,0 +1,111 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-grey sticky-top border-bottom border-3">
+   <div class="container px-4 px-lg-5">
+   <a class="navbar-brand" href="/">
+   <img src="/static/assets/logo-black.svg" alt="Logo" />
+   </a>
+   <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      >
+   <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   <ul class="navbar-nav me-auto mb-lg-0 ms-lg-4">
+      <li class="nav-item">
+         <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="/contact.html">Contact Us</a></li>
+      <li class="nav-item"><a class="nav-link" href="/blog.html">Blog</a></li>
+      <li class="nav-item dropdown">
+         <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Shop</a
+            >
+         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#All">All Products</a></li>
+            <li>
+               <hr class="dropdown-divider" />
+            </li>
+         </ul>
+      </li>
+   </ul>
+   <form class="d-flex borderless" id="search-bar">
+      <input
+         class="form-control borderless bg-white"
+         type="search"
+         placeholder="Search"
+         aria-label="Search"
+         />
+      <button class="borderless btn btn-outline bg-white" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+   </form>
+   {% if loggedIn %}
+   <button class="btn btn-light position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#shoppingCart" aria-expanded="false" aria-controls="shoppingCart">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span id="cartNumber" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+      </button>
+         <span class="mx-4 mx-lg-5 d-flex align-items-start">
+            <a href="/" class="nav-link mx-2"><i class="fa-solid fa-user"></i></a>
+            <div class="dropdown">
+               <a class="nav-link dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+               </a>
+               <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                  <li><a class="dropdown-item" href="/checkout">Cart Checkout <i class="fa-solid fa-shopping-cart"></i></a></li>
+                  <li><a class="dropdown-item" href="/editAccount">Edit Account <i class="fa-solid fa-edit"></i></a></li>
+                  <li><a class="dropdown-item" href="/logout">Logout <i class="fa-solid fa-sign-out"></i></a></li>
+               </ul>
+            </div>
+          </span>
+   {% else %}
+   <span class="mx-4 mx-lg-5 d-flex align-items-start nav-item">
+      <div class="p-2 px-4">
+         <a href="/loginForm" class="nav-link mx-2">Login</a>
+      </div>
+         <a href="/registerForm" class="nav-link">
+            <div class="border border-dark border-1 p-2 px-4">
+               Register
+            </div>
+         </a>
+    </span>
+   {% endif %}
+</nav>
+<div class="collapse bg-cream" id="shoppingCart"  style="position: -webkit-sticky; position: sticky ;top: 60px; z-index: 10;">
+<div class="p-5">
+   <div class="d-flex justify-content-between">
+      <h5>Cart</h5>
+      <a href="/checkout.html">Checkout</a>
+   </div>
+   <div class="d-flex justify-content-between">
+      <div class="d-flex" id="cartItems">
+         {% for item in cart %}
+         <div class="d-flex">
+            <img src="{{ item.image }}" alt="Product Image" class="img-thumbnail" />
+            <div class="d-flex flex-column">
+               <p class="fw-bold">{{ item.name }}</p>
+               <p>{{ item.price }}</p>
+               <p>{{ item.quantity }}</p>
+            </div>
+            {% endfor %}
+      </div>
+   </div>
+   <p class="fw-bold" id="cartTotal">
+      {% if cart|length > 0 %}
+      Total: {{ cart|map(attribute='price')|sum }}
+      {% else %}
+      Cart is empty
+      {% endif %}
+   </p>
+   <a class="btn btn-dark" href="checkout.html">Checkout</a>
+</div>
+</div>
+</nav>

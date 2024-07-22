@@ -1,129 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>Camelia Homepage</title>
-  <link href="static/css/bootstrap-icons.css" rel="stylesheet">
-  <link href="static/css/styles.css" rel="stylesheet">
-  <link href="static/css/personal.css" rel="stylesheet">
-</head>
-<body class="bg-cream">
-  <header id="main-slider" class="carousel slide" data-bs-ride="carousel">
+{% extends "base.html" %}
+
+{% block content %}
+<header id="main-slider" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="static/assets/banners/banner1.jpg" class="d-block w-100" alt="Slide 1">
-      </div>
-      <div class="carousel-item">
-        <img src="static/assets/banners/banner2.jpg" class="d-block w-100" alt="Slide 2">
-      </div>
-      <div class="carousel-item">
-        <img src="static/assets/banners/banner3.jpg" class="d-block w-100" alt="Slide 2">
-      </div>
+        <div class="carousel-item active">
+            <img src="static/assets/banners/banner1.jpg" class="d-block w-100" alt="Slide 1">
+        </div>
+        <div class="carousel-item">
+            <img src="static/assets/banners/banner2.jpg" class="d-block w-100" alt="Slide 2">
+        </div>
+        <div class="carousel-item">
+            <img src="static/assets/banners/banner3.jpg" class="d-block w-100" alt="Slide 3">
+        </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#main-slider" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#main-slider" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
     </button>
     <ol class="carousel-indicators">
-      <li data-bs-target="#main-slider" data-bs-slide-to="0" class="active"></li>
-      <li data-bs-target="#main-slider" data-bs-slide-to="1"></li>
-      <li data-bs-target="#main-slider" data-bs-slide-to="2"></li>
+        <li data-bs-target="#main-slider" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#main-slider" data-bs-slide-to="1"></li>
+        <li data-bs-target="#main-slider" data-bs-slide-to="2"></li>
     </ol>
-  </header>
+</header>
 
-  <div class="py-5">
-    <div class="container px-4 px-lg-5 my-5 row-cols-auto">
-      <div class="text-center mb-4">
-        <h1 class="display-4 fw-light">Lối sống Minimalism</h1>
-        <p class="lead fw-normal mb-0">
-          Cùng với thiết kế đơn giản và chất liệu bền bỉ, sản phẩm từ Camelia Brand đem đến cho người dùng nhiều tiện ích để khiến cuộc sống bạn trở nên dễ dàng, tối ưu và gọn gàng hơn. <br />
-          Xem nhé…
-        </p>
-      </div>
-      <div style="content: ''; display: block; width: 50%; height: 2px; background: #333333; margin: 5px auto 50px;"></div>
-      <div class="text-center mb-5">
-        <div class="col">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/GTw4fNvorZs?rel=0&amp;autoplay=0" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-        </div>
-      </div>
-      <div style="content: ''; display: block; width: 50%; height: 2px; background: #333333; margin: 5px auto 50px;"></div>
-    </div>
-  </div>
-  
-  <section class="bg-cream">
+<section class="bg-cream">
     <div class="container px-4 px-lg-5 mt-5">
-      <div class="row">
-        {% for product in products %}
-          {% if loop.first or product.category != (products[loop.index0 - 1]).category %}
-            <h2>{{ product.category.capitalize() }}</h2>
-          {% endif %}
-          <div class="col mb-5">
-              <div class="card h-100">
-                <a href="/product/{{ product.id }}">
-                <img class="card-img-top" src="{{ product.image }}" alt="{{ product.name }}">
-                <div class="card-body">
-                  <h5 class="card-title">{{ product.name }}</h5>
-                  <p class="card-text">Price: {{ product.price }}</p>
-                  <p class="card-text">Rating: 
-                    {% for _ in range(product.rating|int) %}
-                      <i class="fa-regular fa-star"></i>
-                    {% endfor %}
-                    {% if product.rating - (product.rating|int) > 0 %}
-                      <i class="fa-regular fa-star-half"></i>
-                    {% endif %}
-                  </p>
-                </a>
-                <div class="card-footer p-2 pt-4 border-top-0 bg-transparent">
-                  <div class="text-center">
-                    <button class="btn btn-outline-dark mt-auto" id="addToCart">Thêm vào giỏ hàng</button>
-                  </div>
+        <div class="row">
+            {% for product in products %}
+                {% if loop.first or product.category != (products[loop.index0 - 1]).category %}
+                    <h2>{{ product.category.capitalize() }}</h2>
+                {% endif %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <a href="/product/{{ product.id }}">
+                            <img class="card-img-top" src="{{ product.image }}" alt="{{ product.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">Price: {{ product.price }}</p>
+                                <p class="card-text">Rating: 
+                                    {% for _ in range(product.rating|int) %}
+                                        <i class="fa-regular fa-star"></i>
+                                    {% endfor %}
+                                    {% if product.rating - (product.rating|int) > 0 %}
+                                        <i class="fa-regular fa-star-half"></i>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </a>
+                        <div class="card-footer p-2 pt-4 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <form action="/addToCart" method="post">
+                                    <input type="hidden" name="productId" value="{{ product.id }}">
+                                    <button type="submit" class="btn btn-outline-dark mt-auto" id="addToCart">Add to cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
-              </div>
-          </div>
-        {% endfor %}
-      </div>
+            {% endfor %}
+        </div>
     </div>
-  </section>
+</section>
 
-  <section class="bg-cream">
-    <div class="container pt-5 instagram">
-      <h2>Instagram</h2>
-      <div class="row justify-content-center">
-        <div class="col mb-5">
-          <div class="card h-100">
-            <img class="card-img-top img-main" src="static/assets/instagram/instagram1.jpg" alt="...">
-          </div>
-        </div>
-        <div class="col mb-5">
-          <div class="card h-100">
-            <img class="card-img-top img-main" src="static/assets/instagram/instagram2.jpg" alt="...">
-          </div>
-        </div>
-        <div class="col mb-5">
-          <div class="card h-100">
-            <img class="card-img-top img-main" src="static/assets/instagram/instagram3.jpg" alt="...">
-          </div>
-        </div>
-        <div class="col mb-5">
-          <a href="https://www.instagram.com/camelia.vn/" target="_blank">
-            <div class="card h-100 img-text-container" style="background-color: rgb(168, 168, 168)">
-              <img class="card-img-top img-main" src="static/assets/instagram/instagram4.jpg" alt="...">
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <script src="static/js/bootstrap.bundle.min.js"></script>
-  <script src="static/js/script.js"></script>
-</body>
-</html>
+{% endblock %}

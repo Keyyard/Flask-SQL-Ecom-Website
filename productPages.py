@@ -1,7 +1,7 @@
 import sqlite3
 
 def get_products():
-    conn = sqlite3.connect('products.db')
+    conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     query = "SELECT id, category, name, price, image, rating FROM products ORDER BY category ASC"
     # return a list of tuples (id, category, name, price, image, rating)
@@ -27,7 +27,7 @@ def get_products():
 # and can be accessed by flask to render the template
 
 def get_product_detail(product_id):
-    conn = sqlite3.connect('products.db')
+    conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     query = "SELECT category, name, price, image, rating FROM products WHERE id = ?"
     # The ? is a placeholder for a real value, a value you must bind to the compiled statement.
