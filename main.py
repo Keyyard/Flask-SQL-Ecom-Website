@@ -176,6 +176,13 @@ def removeFromCart():
         conn.close()
         return redirect(url_for('index'))
 
+@app.route("/checkout")
+def checkout():
+    loggedIn, email = getLoginDetails()
+    cart, totalPrice = get_cart_items(email)
+    return render_template('checkout.html', loggedIn=loggedIn, cart=cart, totalPrice=totalPrice)
+
+
 @app.route('/about.html')
 def about():
     return render_template('about.html')
