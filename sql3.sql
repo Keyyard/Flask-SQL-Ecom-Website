@@ -24,3 +24,15 @@ CREATE TABLE products (
 );
 
 DROP TABLE Cart_Items
+DROP TABLE Carts
+
+
+CREATE TABLE cart
+		(userId INTEGER,
+		productId INTEGER,
+		FOREIGN KEY(userId) REFERENCES users(userId),
+		FOREIGN KEY(productId) REFERENCES products(productId)
+		);
+
+DROP TABLE Carts;
+DROP TABLE Cart_Items;

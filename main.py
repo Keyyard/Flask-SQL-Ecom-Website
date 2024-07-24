@@ -1,7 +1,7 @@
 from flask import Flask, render_template, session, redirect, url_for, request
 from productPages import get_products, get_product_detail
 from blogPages import get_blogs, get_blog_detail
-from cart import get_cart_items, add_to_cart
+from cart import get_cart_items
 from werkzeug.utils import secure_filename
 import os
 import hashlib
@@ -105,22 +105,76 @@ def registerForm():
 def index():
     products = get_products()
     loggedIn, email = getLoginDetails()
-    cart = get_cart_items(email)
-    return render_template('index.html', products=products, loggedIn=loggedIn, cart=cart)
+    cart, totalPrice = get_cart_items(email)
+    return render_template('index.html', products=products, loggedIn=loggedIn, cart=cart, totalPrice=totalPrice)
 
 @app.route('/product/<int:product_id>')
 def product_detail(product_id):
     product = get_product_detail(product_id)
+    loggedIn, email = getLoginDetails()
+    cart, totalPrice = get_cart_items(email)
     if not product:
         return "Sản phẩm không khả dụng - Product is not available", 404 
-    return render_template('product_detail.html', product=product)
+    return render_template('product_detail.html', product=product,  loggedIn=loggedIn, cart=cart, totalPrice=totalPrice)
 
-@app.route('/addToCart', methods=['POST'])
+@app.route("/addToCart", methods = ['POST', 'GET'])
 def addToCart():
-    product_id = request.form['product_id']
-    email = session['email']
-    add_to_cart(email, product_id)
-    return redirect(url_for('index'))
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    else:
+        productId = int(request.form.get('productId'))
+        with sqlite3.connect('database.db') as conn:
+            cur = conn.cursor()
+            cur.execute("SELECT id FROM users WHERE email = ?", (session['email'],))
+            userId = cur.fetchone()[0]
+            
+            # Check if the item is already in the cart
+            cur.execute("SELECT quantity FROM cart WHERE userId = ? AND productId = ?", (userId, productId))
+            result = cur.fetchone()
+            
+            try:
+                if result:
+                    # If item is already in the cart, update the quantity
+                    new_quantity = result[0] + 1
+                    cur.execute("UPDATE cart SET quantity = ? WHERE userId = ? AND productId = ?", (new_quantity, userId, productId))
+                else:
+                    # If item is not in the cart, insert it with quantity = 1
+                    cur.execute("INSERT INTO cart (userId, productId, quantity) VALUES (?, ?, 1)", (userId, productId))
+                conn.commit()
+            except:
+                conn.rollback()
+                # If there is an error, rollback the database to the last commit
+        conn.close()
+        return redirect(url_for('index'))
+
+@app.route("/removeFromCart", methods=['POST', 'GET'])
+def removeFromCart():
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    else:
+        productId = int(request.form.get('productId'))
+        with sqlite3.connect('database.db') as conn:
+            cur = conn.cursor()
+            cur.execute("SELECT id FROM users WHERE email = ?", (session['email'],))
+            userId = cur.fetchone()[0]
+            
+            # Check the current quantity of the item in the cart
+            cur.execute("SELECT quantity FROM cart WHERE userId = ? AND productId = ?", (userId, productId))
+            result = cur.fetchone()
+            
+            try:
+                if result and result[0] > 1:
+                    # If quantity is greater than 1, decrease it by 1
+                    new_quantity = result[0] - 1
+                    cur.execute("UPDATE cart SET quantity = ? WHERE userId = ? AND productId = ?", (new_quantity, userId, productId))
+                elif result and result[0] == 1:
+                    # If quantity is 1, remove the item from the cart
+                    cur.execute("DELETE FROM cart WHERE userId = ? AND productId = ?", (userId, productId))
+                conn.commit()
+            except:
+                conn.rollback()
+        conn.close()
+        return redirect(url_for('index'))
 
 @app.route('/about.html')
 def about():

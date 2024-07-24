@@ -32,3 +32,13 @@ CREATE TABLE users (
     email TEXT NOT NULL,
     password TEXT NOT NULL
 );
+
+CREATE TABLE cart (
+        userId INTEGER,
+		productId INTEGER,
+        quantity INTEGER,
+		FOREIGN KEY(userId) REFERENCES users(id),
+		FOREIGN KEY(productId) REFERENCES products(id)
+		);
+
+DROP TABLE cart;

@@ -52,7 +52,13 @@
    {% if loggedIn %}
    <button class="btn btn-light position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#shoppingCart" aria-expanded="false" aria-controls="shoppingCart">
       <i class="fa-solid fa-cart-shopping"></i>
-      <span id="cartNumber" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+      <span id="cartNumber" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      {% if cart %}
+      {{ cart|length }}
+      {% else %}
+      0
+      {% endif %}
+      </span>
       </button>
          <span class="mx-4 mx-lg-5 d-flex align-items-start">
             <a href="/" class="nav-link mx-2"><i class="fa-solid fa-user"></i></a>
@@ -82,30 +88,47 @@
 <div class="collapse bg-cream" id="shoppingCart"  style="position: -webkit-sticky; position: sticky ;top: 60px; z-index: 10;">
 <div class="p-5">
    <div class="d-flex justify-content-between">
-      <h5>Cart</h5>
-      <a href="/checkout.html">Checkout</a>
+      <h5 class="fw-bold">Cart</h5>
    </div>
    <div class="d-flex justify-content-between">
       <div class="d-flex" id="cartItems">
+         {% if cart %}
          {% for item in cart %}
-         <div class="d-flex">
-            <img src="{{ item.image }}" alt="Product Image" class="img-thumbnail" />
+         <div class="d-flex item-container gap-1">
+            <a href="/product/{{ item.id }}" class="d-flex align-items-center gap-1">
+            <img src="{{ item.image }}" alt="Product Image" style="width: 2.5rem; height: auto;" />
             <div class="d-flex flex-column">
                <p class="fw-bold">{{ item.name }}</p>
                <p>{{ item.price }}</p>
-               <p>{{ item.quantity }}</p>
+               <p>Quantity: {{ item.quantity }}</p>
             </div>
-            {% endfor %}
+            </a>
+            <form action="/removeFromCart" method="post">
+               <input type="hidden" name="productId" value="{{ item.id }}">
+               <button type="submit" class="border-0" id="removeFromCart">x</button>
+           </form>            
+           {% endfor %}
+         {% else %}
+               <div class="d-flex justify-content-center">
+                  <p>No items in cart</p>
+         {% endif %}
+      </div>
       </div>
    </div>
-   <p class="fw-bold" id="cartTotal">
-      {% if cart|length > 0 %}
-      Total: {{ cart|map(attribute='price')|sum }}
+   <div class="d-flex justify-content-between align-items-center">
+      <div class="fw-bold">
+      {% if totalPrice %}
+      Total: {{ totalPrice }}
       {% else %}
-      Cart is empty
+      Total: 0 
       {% endif %}
-   </p>
-   <a class="btn btn-dark" href="checkout.html">Checkout</a>
+   </div>
+   <div>
+      <a href="/checkout" class="btn btn-dark">Checkout</a>
+   </div>
+</div>
+
+</div>
 </div>
 </div>
 </nav>
