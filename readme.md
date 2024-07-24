@@ -1,8 +1,8 @@
 # Python Flask E-Commerce Website Project [WIP]
 A simple e-commerce website using Flask, Jinja2, SQLite3, jQuery, Bootstrap, HashLib and Python.
 
-_ the project is still in development and is not yet complete.
-There will be alot of personal notes in the code. _
+the project is still in development and is not yet complete.
+There will be alot of personal notes in the code.
 ## Project Details
 
 ### Web Pages
