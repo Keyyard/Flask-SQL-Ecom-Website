@@ -2,7 +2,6 @@ from flask import Flask, render_template, session, redirect, url_for, request
 from productPages import get_products, get_product_detail
 from blogPages import get_blogs, get_blog_detail
 from cart import get_cart_items
-from werkzeug.utils import secure_filename
 import os
 import hashlib
 import sqlite3
