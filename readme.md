@@ -23,6 +23,8 @@ There will be alot of personal notes in the code.
 ## Resources
 **Product assets used in this project belong to the Camelia Brand.**
 
+## Demo
+> https://ecom-web-92a1cf2e89ba.herokuapp.com/
 ## Installation
 1. Clone the repository.
 2. Install the required packages using the following command:
