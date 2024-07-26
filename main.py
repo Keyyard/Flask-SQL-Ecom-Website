@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for, request
+from flask import Flask, render_template, session, redirect, url_for, request, send_from_directory
 from productPages import get_products, get_product_detail
 from blogPages import get_blogs, get_blog_detail
 from cart import get_cart_items
@@ -208,6 +208,12 @@ def blog_detail(blog_id):
         return render_template('blog_detail.html', blog=blog)
     else:
         return "Blog không khả dụng - Blog is not available", 404
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
