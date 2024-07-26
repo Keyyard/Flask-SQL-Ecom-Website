@@ -209,5 +209,5 @@ def blog_detail(blog_id):
     else:
         return "Blog không khả dụng - Blog is not available", 404
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
